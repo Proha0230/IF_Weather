@@ -24,7 +24,7 @@
 <script setup lang="ts">
 const goGitHub = (event) => {
   event.preventDefault()
-  window.open('https://github.com/Proha0230', '_blank')
+  window.open('https://github.com/Proha0230/IF_Weather', '_blank')
 }
 const goTelegram = (event) => {
   event.preventDefault()

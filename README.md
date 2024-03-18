@@ -7,3 +7,7 @@
 * TypeScript
 
 * Sass(scss) 
+
+Deploy Firebase:
+
+https://if-weather.web.app/

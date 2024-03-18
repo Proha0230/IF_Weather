@@ -110,19 +110,21 @@
         display: flex;
         flex-flow: column;
         align-items: center;
-        width: 18%;
+        width: 15%;
+        padding: 7px;
         background-color: $forecast-bg;
         border-radius: 10px;
         box-shadow: 0 0 5px white;
 
-        //& p {
-        //  @include textColorAndShadow;
-        //}
 
         &__date {
           display: flex;
           flex-flow: column;
           align-items: center;
+
+          & p {
+            font-size: 15px;
+          }
         }
 
         &__temperature {
