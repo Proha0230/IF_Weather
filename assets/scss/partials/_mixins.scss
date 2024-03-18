@@ -1,0 +1,27 @@
+@import "params";
+
+@mixin textColorAndShadow() {
+  color: white;
+  text-shadow: $shadow-text;
+}
+
+@mixin allPageMainStyle() {
+  height: 90vh;
+  max-height: 800px;
+  width: 100vw;
+  max-width: 700px;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin allPageBlockStyle() {
+  background-color: rgba(83, 115, 143, 0.4);
+  width: 90vw;
+  height: 80vh;
+  max-height: 700px;
+  max-width: 600px;
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 10px;
+  overflow: scroll;
+}
