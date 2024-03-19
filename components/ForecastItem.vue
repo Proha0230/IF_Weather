@@ -2,11 +2,11 @@
 <div class="main_item">
   <div class="main_item__weather">
     <IconCloud></IconCloud>
-    <p class="main_item__weather--day">Сегодня</p>
-    <p>Облачно</p>
+    <p class="main_item__weather--day">{{ forecastValue.day}}</p>
+    <p>{{ forecastValue.stateSky}}</p>
   </div>
   <div class="main_item__temperature">
-    <p> 4 <IconCelsiusMini></IconCelsiusMini></p>
+    <p> {{forecastValue.temperature}} <IconCelsiusMini></IconCelsiusMini></p>
     <p class="main_item__temperature--split"> / </p>
     <p> 1 <IconCelsiusMini></IconCelsiusMini></p>
   </div>
@@ -15,6 +15,21 @@
 </template>
 
 <script setup lang="ts">
+
+type forecast3Day = {
+  stateSky: string,
+  day: string,
+  temperature: number
+}
+
+const props = defineProps({
+  forecast3Day: {
+    type: Object as forecast3Day,
+    default: false,
+  }
+})
+
+const forecastValue: forecast3Day = props.forecast3Day
 
 </script>
 
@@ -30,7 +45,6 @@
   &__weather {
     display: flex;
     align-items: center;
-    margin-left: 20px;
 
     & p {
       margin: 0;
@@ -46,7 +60,6 @@
   &__temperature {
     display: flex;
     align-items: center;
-    margin-right: 20px;
     & p {
       margin: 0;
       font-size: 20px;

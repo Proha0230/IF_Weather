@@ -2,9 +2,9 @@
   <div class="main_forecast">
 
     <div class="main_forecast__list">
-        <ForecastItem></ForecastItem>
-        <ForecastItem></ForecastItem>
-        <ForecastItem></ForecastItem>
+      <div v-for="item in forecastValue">
+        <ForecastItem :forecast3Day="item"></ForecastItem>
+      </div>
       <div class="main_forecast__list--button">
         <NuxtLink to="/forecast-5day-Moscow" @click="goToForecast5Day"> <button>Прогноз погоды на 5 дней</button> </NuxtLink>
       </div>
@@ -16,7 +16,21 @@
 <script setup lang="ts">
 import {useRouteSearch} from "~/composables/states";
 
+type forecast3Day = {
+  stateSky: string,
+  day: string,
+  temperature: number
+}
+
+const props = defineProps({
+  forecast3Day: {
+    type: Array as forecast3Day,
+    default: false,
+  }
+})
+
 const routeSearch = useRouteSearch();
+const forecastValue: Array<forecast3Day> = props.forecast3Day
 
 const goToForecast5Day = () => {
   routeSearch.value.goToForecast5Day = true
@@ -36,9 +50,12 @@ const goToForecast5Day = () => {
     padding-bottom: 20px;
 
     &__list {
+      display: flex;
+      flex-flow: column;
       width: 90vw;
       max-width: 600px;
       height: 295px;
+      padding: 5px;
       border-radius: 20px;
       background-color: $forecast-bg;
       box-shadow: 0 0 5px $forecast-bg;

@@ -1,17 +1,33 @@
 <template>
 <div class="main_temp">
   <div class="main_temp__city">
-    <h3>Moscow</h3>
+    <h3>{{ cityValue.city }}</h3>
   </div>
   <div class="main_temp__value">
-    <h1>4</h1>
+    <h1>{{ cityValue.mainTemperature }}</h1>
     <IconCelsius></IconCelsius>
   </div>
-  <p>Облачно</p>
+  <p>{{ cityValue.stateSky }}</p>
 </div>
 </template>
 
 <script setup lang="ts">
+
+type cityValue = {
+  city: string,
+  mainTemperature: number,
+  stateSky: string,
+  forecast3Day: Array<forecast3Day>
+}
+
+const props = defineProps({
+  item: {
+    type: Object as cityValue,
+    default: false
+  }
+})
+
+const cityValue = props.item
 
 </script>
 
