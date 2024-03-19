@@ -18,21 +18,12 @@
 
 <script setup lang="ts">
 
-type forecast3Day = {
-  stateSky: string,
-  day: string,
-  temperature: number
-}
+import {useValueForCity} from "~/composables/states";
+import type {cityValue} from "~/composables/types"
 
-type cityValue = {
-  city: string,
-  mainTemperature: number,
-  stateSky: string,
-  forecast3Day: Array<forecast3Day>
-}
-
-const dotEmpty = resolveComponent('IconDotEmpty')
-const dotActive = resolveComponent('IconDotActive')
+const state = useValueForCity();
+const dotEmpty = resolveComponent('IconDotEmpty');
+const dotActive = resolveComponent('IconDotActive');
 // переменная для стартового положения пальца при свайпе
 const startX = ref(0);
 // переменная для стартового положения пальца при свайпе
@@ -40,73 +31,7 @@ const endX = ref(0);
 // переменная которая обозначает номер текущего слайда
 const currentIndex = ref(0);
 // Данные для слайдов
-const items: Array<cityValue> = reactive([
-  {
-    city: 'Москва',
-    mainTemperature: 4,
-    stateSky: 'Облачно',
-    forecast3Day: [
-      {
-        stateSky: 'Облачно',
-        day: 'Сегодня',
-        temperature: 3
-      },
-      {
-        stateSky: 'Дождь',
-        day: 'Завтра',
-        temperature: 6
-      },
-      {
-        stateSky: 'Дождь',
-        day: 'Послезавтра',
-        temperature: 5
-      }
-    ]
-  },
-  {
-    city: 'Кемерово',
-    mainTemperature: -9,
-    stateSky: 'Чистое небо',
-    forecast3Day: [
-      {
-        stateSky: 'Облачно',
-        day: 'Сегодня',
-        temperature: -7
-      },
-      {
-        stateSky: 'Солнечно',
-        day: 'Завтра',
-        temperature: -11
-      },
-      {
-        stateSky: 'Туман',
-        day: 'Послезавтра',
-        temperature: -3
-      }
-    ]
-  },
-  { city: 'Томск',
-    mainTemperature: 0,
-    stateSky: 'Дождь',
-    forecast3Day: [
-      {
-        stateSky: 'Облачно',
-        day: 'Сегодня',
-        temperature: 2
-      },
-      {
-        stateSky: 'Облачно',
-        day: 'Завтра',
-        temperature: -1
-      },
-      {
-        stateSky: 'Солнечно',
-        day: 'Послезавтра',
-        temperature: 4
-      }
-    ]
-  }
-  ]);
+const items: Array<cityValue> = state.value;
 
 
 //определение положения пальца при нажатии на слайд

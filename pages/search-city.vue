@@ -4,15 +4,17 @@
     <div class="main_search__block--input_block">
     <div class="input_block__child">
       <IconGeolocation></IconGeolocation>
-      <input />
+      <input v-model="inputSearch"/>
       <button>Поиск</button>
     </div>
     </div>
     <div class="main_search__city_search_item">
-      <SearchCity></SearchCity>
+      <SearchCity :usersCity="searchData"></SearchCity>
     </div>
     <div class="main_search__city_user_list">
-      <SearchCity></SearchCity>
+      <div v-for="(item,index) in state" :key="index">
+        <SearchCity :usersCity="item"></SearchCity>
+      </div>
     </div>
     </div>
   </div>
@@ -20,6 +22,17 @@
 </template>
 
 <script setup lang="ts">
+import {useValueForCity} from "~/composables/states";
+import type {cityValue} from "~/composables/types"
+
+
+const state = useValueForCity();
+const inputSearch = ref('Саратов');
+const searchData: cityValue = {
+  city: 'Саратов',
+  mainTemperature: 12
+}
+
 
 </script>
 
@@ -76,7 +89,8 @@
 
   &__city_user_list {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    align-items: center;
   }
 
   &__city_search_item {

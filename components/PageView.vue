@@ -4,21 +4,7 @@
 </template>
 
 <script setup lang="ts">
-
-import {mergeProps} from "vue";
-
-type forecast3Day = {
-  stateSky: string,
-  day: string,
-  temperature: number
-}
-
-type cityValue = {
-  city: string,
-  mainTemperature: number,
-  stateSky: string,
-  forecast3Day: Array<forecast3Day>
-}
+import type {cityValue} from "~/composables/types"
 
 const props = defineProps({
   allValueForCity: {

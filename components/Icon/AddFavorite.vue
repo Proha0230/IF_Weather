@@ -7,5 +7,6 @@
 .IconAddFavorite {
   margin-left: 15px;
   filter: drop-shadow(0 0 5px blue);
+  cursor: pointer;
 }
 </style>

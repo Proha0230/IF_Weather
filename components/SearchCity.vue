@@ -2,12 +2,10 @@
   <div class="search_city">
     <div class="search_city__name">
       <IconCity></IconCity>
-      <p>Moscow</p>
+      <p>{{ usersCity.city }}</p>
     </div>
     <div class="search_city__temperature">
-      <p> 4 <IconCelsiusMini></IconCelsiusMini></p>
-      <p class="search_city__temperature--split"> / </p>
-      <p> 1 <IconCelsiusMini></IconCelsiusMini></p>
+      <p> {{usersCity.mainTemperature}} <IconCelsiusMini></IconCelsiusMini></p>
       <IconAddFavorite></IconAddFavorite>
     </div>
   </div>
@@ -15,6 +13,29 @@
 </template>
 
 <script setup lang="ts">
+// import {cityValue} from "~/myTypes/typesForCityValue"
+
+// type forecast3Day = {
+//   stateSky: string,
+//   day: string,
+//   temperature: number
+// }
+//
+// type cityValue = {
+//   city: string,
+//   mainTemperature: number,
+//   stateSky?: string,
+//   forecast3Day?: Array<forecast3Day>
+// }
+
+const props = defineProps({
+  usersCity: {
+    type: Object as cityValue,
+    default: false
+  }
+})
+
+const usersCity: cityValue = props.usersCity
 
 </script>
 

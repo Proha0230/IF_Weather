@@ -15,12 +15,7 @@
 
 <script setup lang="ts">
 import {useRouteSearch} from "~/composables/states";
-
-type forecast3Day = {
-  stateSky: string,
-  day: string,
-  temperature: number
-}
+import type {forecast3Day} from "~/composables/types"
 
 const props = defineProps({
   forecast3Day: {

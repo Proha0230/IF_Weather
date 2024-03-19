@@ -15,12 +15,7 @@
 </template>
 
 <script setup lang="ts">
-
-type forecast3Day = {
-  stateSky: string,
-  day: string,
-  temperature: number
-}
+import type {forecast3Day} from "~/composables/types"
 
 const props = defineProps({
   forecast3Day: {
@@ -48,7 +43,7 @@ const forecastValue: forecast3Day = props.forecast3Day
 
     & p {
       margin: 0;
-      font-size: 20px;
+      font-size: 15px;
       @include textColorAndShadow;
     }
 
@@ -62,7 +57,7 @@ const forecastValue: forecast3Day = props.forecast3Day
     align-items: center;
     & p {
       margin: 0;
-      font-size: 20px;
+      font-size: 15px;
       @include textColorAndShadow;
     }
 

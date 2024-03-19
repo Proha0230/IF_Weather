@@ -12,13 +12,7 @@
 </template>
 
 <script setup lang="ts">
-
-type cityValue = {
-  city: string,
-  mainTemperature: number,
-  stateSky: string,
-  forecast3Day: Array<forecast3Day>
-}
+import type {cityValue} from "~/composables/types"
 
 const props = defineProps({
   item: {
