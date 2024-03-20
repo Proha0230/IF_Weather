@@ -7,6 +7,8 @@
         * Nuxt 3 <br/>
         * TypeScript <br/>
         * Sass(scss) <br/>
+        Данные по погоде берутся из API (Free): <br/>
+        https://www.weatherapi.com/docs/ <br/>
       </p>
       <div class="main_about__block--button">
         <button @click.prevent="goGitHub"> Репозиторий с приложением </button>

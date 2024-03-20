@@ -12,7 +12,7 @@
       <SearchCity :usersCity="searchData"></SearchCity>
     </div>
     <div class="main_search__city_user_list">
-      <div v-for="(item,index) in state" :key="index">
+      <div v-for="(item,index) in userCityValue" :key="index">
         <SearchCity :usersCity="item"></SearchCity>
       </div>
     </div>
@@ -27,10 +27,11 @@ import type {cityValue} from "~/composables/types"
 
 
 const state = useValueForCity();
+const userCityValue: Array<cityValue> = state.value.userCityValue
 const inputSearch = ref('Саратов');
 const searchData: cityValue = {
   city: 'Саратов',
-  mainTemperature: 12
+  temperature: 12
 }
 
 

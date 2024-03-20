@@ -4,10 +4,15 @@
     <h3>{{ cityValue.city }}</h3>
   </div>
   <div class="main_temp__value">
-    <h1>{{ cityValue.mainTemperature }}</h1>
+    <h1>{{ cityValue.temperature }}</h1>
     <IconCelsius></IconCelsius>
   </div>
-  <p>{{ cityValue.stateSky }}</p>
+  <p>{{ cityValue.stateSky.text }}</p>
+  <div class="main_temp__min_and_max_value">
+    <p>{{cityValue.minTemperature}} <IconCelsiusMini></IconCelsiusMini></p>
+    <p class="main_temp__min_and_max_value--space">...</p>
+    <p>{{cityValue.maxTemperature}} <IconCelsiusMini></IconCelsiusMini></p>
+  </div>
 </div>
 </template>
 
@@ -21,7 +26,7 @@ const props = defineProps({
   }
 })
 
-const cityValue = props.item
+const cityValue: cityValue = props.item
 
 </script>
 
@@ -29,6 +34,9 @@ const cityValue = props.item
 @import "assets/scss/partials/mixins";
 
 .main_temp {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 
   & p {
     font-size: 25px;
@@ -55,6 +63,15 @@ const cityValue = props.item
     & h3 {
       font-size: 30px;
       @include textColorAndShadow;
+    }
+  }
+
+  &__min_and_max_value {
+    margin-top: 15px;
+    display: flex;
+
+    &--space {
+      margin-right: 14px !important;
     }
   }
 }

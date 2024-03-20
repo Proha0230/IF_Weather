@@ -1,76 +1,21 @@
 export const useRouteSearch = () => useState(() => ({
     goToSearch: false,
-    goToAbout: false,
-    goToForecast5Day: false
+    goToAbout: false
 }))
 
-export const useValueForCity = () => useState(() => ([
-    {
-        city: 'Москва',
-        mainTemperature: 4,
-        stateSky: 'Облачно',
-        favorite: true,
-        forecast3Day: [
+export const useValueForCity = () => useState(() => ({
+    userCityFetchValue: {
+        "locations": [
             {
-                stateSky: 'Облачно',
-                day: 'Сегодня',
-                temperature: 3
+                "q": "Moscow"
             },
             {
-                stateSky: 'Дождь',
-                day: 'Завтра',
-                temperature: 6
+                "q": "Kemerovo"
             },
             {
-                stateSky: 'Дождь',
-                day: 'Послезавтра',
-                temperature: 5
+                "q": "Tomsk"
             }
         ]
     },
-    {
-        city: 'Кемерово',
-        mainTemperature: -9,
-        stateSky: 'Чистое небо',
-        favorite: true,
-        forecast3Day: [
-            {
-                stateSky: 'Облачно',
-                day: 'Сегодня',
-                temperature: -7
-            },
-            {
-                stateSky: 'Солнечно',
-                day: 'Завтра',
-                temperature: -11
-            },
-            {
-                stateSky: 'Туман',
-                day: 'Послезавтра',
-                temperature: -3
-            }
-        ]
-    },
-    { city: 'Томск',
-        mainTemperature: 0,
-        stateSky: 'Дождь',
-        favorite: true,
-        forecast3Day: [
-            {
-                stateSky: 'Облачно',
-                day: 'Сегодня',
-                temperature: 2
-            },
-            {
-                stateSky: 'Облачно',
-                day: 'Завтра',
-                temperature: -1
-            },
-            {
-                stateSky: 'Солнечно',
-                day: 'Послезавтра',
-                temperature: 4
-            }
-        ]
-    }
-]))
+    userCityValue: []
+}))

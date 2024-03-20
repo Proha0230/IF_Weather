@@ -5,7 +5,7 @@
       <p>{{ usersCity.city }}</p>
     </div>
     <div class="search_city__temperature">
-      <p> {{usersCity.mainTemperature}} <IconCelsiusMini></IconCelsiusMini></p>
+      <p> {{usersCity.temperature}} <IconCelsiusMini></IconCelsiusMini></p>
       <IconAddFavorite></IconAddFavorite>
     </div>
   </div>
@@ -13,20 +13,7 @@
 </template>
 
 <script setup lang="ts">
-// import {cityValue} from "~/myTypes/typesForCityValue"
-
-// type forecast3Day = {
-//   stateSky: string,
-//   day: string,
-//   temperature: number
-// }
-//
-// type cityValue = {
-//   city: string,
-//   mainTemperature: number,
-//   stateSky?: string,
-//   forecast3Day?: Array<forecast3Day>
-// }
+import type {cityValue} from "~/composables/types"
 
 const props = defineProps({
   usersCity: {

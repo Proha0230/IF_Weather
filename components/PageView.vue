@@ -1,6 +1,6 @@
 <template>
   <Temperature :item="allValueForCity"></Temperature>
-  <ForecastList :forecast3Day="allValueForCity.forecast3Day"></ForecastList>
+  <ForecastList :forecast3Day="allValueForCity.forecast5Day"></ForecastList>
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,7 @@ const props = defineProps({
   }
 })
 
-const allValueForCity:cityValue = props.allValueForCity
+const allValueForCity: cityValue = props.allValueForCity
 
 </script>
 

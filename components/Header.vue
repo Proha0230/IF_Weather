@@ -1,8 +1,8 @@
 <template>
   <div class="header_main">
     <div class="header_main__block">
-      <NuxtLink to="/search-city" @click="goToSearch" v-if="!routeSearch.goToSearch && !routeSearch.goToAbout && !routeSearch.goToForecast5Day"><IconPlus></IconPlus></NuxtLink>
-      <NuxtLink to="/" @click="goToHomePage" v-if="routeSearch.goToSearch || routeSearch.goToAbout || routeSearch.goToForecast5Day"><IconBack></IconBack></NuxtLink>
+      <NuxtLink to="/search-city" @click="goToSearch" v-if="!routeSearch.goToSearch && !routeSearch.goToAbout"><IconPlus></IconPlus></NuxtLink>
+      <NuxtLink to="/" @click="goToHomePage" v-if="routeSearch.goToSearch || routeSearch.goToAbout"><IconBack></IconBack></NuxtLink>
       <NuxtLink to="/about" @click="goToAbout" v-if="!routeSearch.goToAbout"><IconAbout></IconAbout></NuxtLink>
     </div>
   </div>
@@ -17,7 +17,6 @@ const routeSearch = useRouteSearch();
 const goToHomePage = () => {
   routeSearch.value.goToSearch = false
   routeSearch.value.goToAbout = false
-  routeSearch.value.goToForecast5Day = false
 }
 const goToSearch = () => {
   routeSearch.value.goToSearch = true

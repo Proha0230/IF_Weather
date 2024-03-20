@@ -8,6 +8,10 @@
 
 * Sass(scss) 
 
+Данные по погоде берутся из API (Free):
+
+https://www.weatherapi.com/docs/
+
 Deploy Firebase:
 
 https://if-weather.web.app/
