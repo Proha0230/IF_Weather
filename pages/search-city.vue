@@ -36,7 +36,7 @@ const dataSearchValue: Ref<dataSearchCity | null> = ref(null);
 const cityForecastData: Ref<Array<cityValue>> = ref([]);
 async function loadData() {
   cityForecastData.value = []
-  const url = `http://api.weatherapi.com/v1/forecast.json?&key=f88bd18e1ab443c8a91121443242003&lang=ru&q=${inputSearch.value}&days=5`
+  const url = `https://api.weatherapi.com/v1/forecast.json?&key=f88bd18e1ab443c8a91121443242003&lang=ru&q=${inputSearch.value}&days=5`
   const {data, pending} = await useFetch(url, {
     method: "POST"
   })

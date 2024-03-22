@@ -80,3 +80,9 @@ export type dataSearchCity = {
         }>
     }
 }
+
+export type CityFetchValues = {
+    locations: Array<{
+        q: string
+    }>
+} | null

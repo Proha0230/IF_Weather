@@ -4,15 +4,17 @@
     <NuxtPage></NuxtPage>
     </NuxtLayout>
   </div>
-  <div>
+  <div v-else>
     <IconLoading></IconLoading>
   </div>
 </template>
 
 <script setup lang="ts">
 import {useValueForCity} from "~/composables/states";
+import {useAsyncData} from "#app";
 
 const state = useValueForCity();
+
 </script>
 
 <style lang="scss">

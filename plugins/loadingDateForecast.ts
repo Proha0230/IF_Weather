@@ -1,4 +1,4 @@
-import {type cityValue, type dataFetchForecast, type forecast5Day} from "~/composables/types";
+import {type CityFetchValues, type cityValue, type dataFetchForecast, type forecast5Day} from "~/composables/types";
 import {useValueForCity} from "~/composables/states";
 import {type Ref} from "vue";
 
@@ -10,10 +10,12 @@ export default defineNuxtPlugin((nuxtApp) => {
 
         async function loadFetchListCity() {
             const {data} = await useFetch('https://if-weather-default-rtdb.firebaseio.com/City.json')
-            state.value.userCityFetchValue = data.value
+            if(data.value) state.value.userCityFetchValue = data.value as CityFetchValues
+            else state.value.userCityFetchValue = null
+            //{locations: [{q: "Moscow"}]}
         }
         async function loadData() {
-            const url = `http://api.weatherapi.com/v1/forecast.json?&key=f88bd18e1ab443c8a91121443242003&lang=ru&q=bulk&days=5`
+            const url = `https://api.weatherapi.com/v1/forecast.json?&key=f88bd18e1ab443c8a91121443242003&lang=ru&q=bulk&days=5`
             const {data} = await useFetch(url, {
                 method: "POST",
                 body: state.value.userCityFetchValue
@@ -49,9 +51,16 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
         getCityValue().then(r => {
             state.value.loading = true
+        }).catch(e => {
+            state.value.loading = true
+            console.log(e)
         })
 
 
 
     })
+    nuxtApp.hook('app:beforeMount', ()=> {
+        navigateTo('/')
+    })
+
 })

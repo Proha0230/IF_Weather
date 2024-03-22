@@ -8,11 +8,6 @@
     <IconCelsius></IconCelsius>
   </div>
   <p>{{ cityValue.stateSky.text }}</p>
-<!--  <div class="main_temp__min_and_max_value">-->
-<!--    <p>{{cityValue.minTemperature}} <IconCelsiusMini></IconCelsiusMini></p>-->
-<!--    <p class="main_temp__min_and_max_value&#45;&#45;space">...</p>-->
-<!--    <p>{{cityValue.maxTemperature}} <IconCelsiusMini></IconCelsiusMini></p>-->
-<!--  </div>-->
 </div>
 </template>
 
@@ -65,15 +60,6 @@ const cityValue: cityValue = props.item
       @include textColorAndShadow;
     }
   }
-
-  //&__min_and_max_value {
-  //  margin-top: 15px;
-  //  display: flex;
-  //
-  //  &--space {
-  //    margin-right: 14px !important;
-  //  }
-  //}
 }
 
 </style>

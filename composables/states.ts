@@ -1,4 +1,4 @@
-import {type cityValue} from "~/composables/types";
+import {type CityFetchValues, type cityValue} from "~/composables/types";
 
 export const useRouteSearch = () => useState(() => ({
     goToSearch: false,
@@ -6,7 +6,13 @@ export const useRouteSearch = () => useState(() => ({
 }))
 
 export const useValueForCity = () => useState(() => ({
-    userCityFetchValue: {},
+    userCityFetchValue: <CityFetchValues>({
+        locations: [
+            {
+                q: ''
+            }
+        ]
+    }),
     userCityValue: Array<cityValue>({
         city: '',
         temperature: 0,

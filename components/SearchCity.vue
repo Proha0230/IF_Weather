@@ -38,8 +38,15 @@ function DeleteCity() {
 }
 
 function AddCity() {
-  console.log('Add')
-  state.value.userCityFetchValue.locations.push({q: usersCity.city})
+  if(state.value.userCityFetchValue && state.value.userCityFetchValue.locations) {
+    state.value.userCityFetchValue.locations.push({q: usersCity.city})
+  } else {
+    state.value.userCityFetchValue = {
+      locations: [
+        {q: usersCity.city}
+      ]
+      }
+    }
   props.usersCity.subscribe = true
   state.value.userCityValue.push(props.usersCity)
   state.value.userCitySearchValue = {}
