@@ -49,7 +49,7 @@ const goTelegram = (event) => {
 
     &--description {
       color: white;
-      font-size: 25px;
+      font-size: 20px;
     }
 
     &--copyright {

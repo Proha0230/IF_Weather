@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div v-if="state.loading">
     <NuxtLayout>
     <NuxtPage></NuxtPage>
     </NuxtLayout>
   </div>
+  <div>
+    <IconLoading></IconLoading>
+  </div>
 </template>
 
 <script setup lang="ts">
+import {useValueForCity} from "~/composables/states";
 
+const state = useValueForCity();
 </script>
 
 <style lang="scss">

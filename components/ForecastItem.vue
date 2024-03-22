@@ -2,7 +2,7 @@
 <div class="main_item">
   <div class="main_item__weather">
     <p class="main_item__weather--day">{{ dateForecast(forecastValue.date)}}</p>
-    <p>{{ truncateString(forecastValue.day.condition.text, 22)}}</p>
+    <p>{{ truncateString(forecastValue.day.condition.text, 20)}}</p>
   </div>
   <div class="main_item__temperature">
     <p> {{forecastValue.day.maxtemp_c}} <IconCelsiusMini></IconCelsiusMini></p>
@@ -18,8 +18,8 @@ import type {forecast5Day} from "~/composables/types"
 
 const props = defineProps({
   forecast3Day: {
-    type: Object as forecast5Day,
-    default: false,
+    type: Object as unknown as forecast5Day,
+    default:  false as boolean,
   }
 })
 

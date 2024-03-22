@@ -6,7 +6,7 @@
     </div>
     <div class="search_city__temperature">
       <p> {{usersCity.temperature}} <IconCelsiusMini></IconCelsiusMini></p>
-      <IconAddFavorite></IconAddFavorite>
+      <component :is="usersCity.subscribe ? subscribeTrue : subscribeFalse" @click="usersCity.subscribe ? DeleteCity() : AddCity()"></component>
     </div>
   </div>
 
@@ -14,15 +14,40 @@
 
 <script setup lang="ts">
 import type {cityValue} from "~/composables/types"
+import {useValueForCity} from "~/composables/states";
 
 const props = defineProps({
   usersCity: {
-    type: Object as cityValue,
+    type: Object as unknown as cityValue,
     default: false
   }
 })
 
 const usersCity: cityValue = props.usersCity
+const subscribeTrue = resolveComponent('IconFavoriteDelete');
+const subscribeFalse = resolveComponent('IconAddFavorite');
+const state = useValueForCity();
+
+function DeleteCity() {
+  state.value.userCityFetchValue.locations = state.value.userCityFetchValue.locations.filter(item => item.q !== usersCity.city)
+  state.value.userCityValue = state.value.userCityValue.filter(item => item.city !== usersCity.city)
+  useFetch('https://if-weather-default-rtdb.firebaseio.com/City.json', {
+    method: "PATCH",
+    body: state.value.userCityFetchValue
+  })
+}
+
+function AddCity() {
+  console.log('Add')
+  state.value.userCityFetchValue.locations.push({q: usersCity.city})
+  props.usersCity.subscribe = true
+  state.value.userCityValue.push(props.usersCity)
+  state.value.userCitySearchValue = {}
+  useFetch('https://if-weather-default-rtdb.firebaseio.com/City.json', {
+    method: "PATCH",
+    body: state.value.userCityFetchValue
+  })
+}
 
 </script>
 

@@ -22,9 +22,61 @@ export type stateSkyType = {
 
 export type cityValue = {
     city: string,
-    forecast5Day: Array<forecast5Day>,
-    maxTemperature: number,
-    minTemperature: number,
-    stateSky: stateSkyType
-    temperature: number
+    forecast5Day?: Array<forecast5Day> | null,
+    maxTemperature?: number,
+    minTemperature?: number,
+    stateSky?: stateSkyType | null,
+    temperature: number,
+    subscribe: boolean
+}
+
+export type dataFetchForecast = {
+    bulk: Array<{
+        query: {
+            custom_id?: string,
+            q?: string,
+            location: {
+                name:string,
+                [key:string]: unknown
+            },
+            current: {
+                temp_c: number,
+                condition: stateSkyType
+            },
+            forecast : {
+                forecastday: Array<{
+                    day: {
+                        mintemp_c: number,
+                        maxtemp_c: number,
+                        [key:string]: unknown
+                    }
+                    [key:string]: unknown
+                }>
+            },
+            [key:string]: unknown
+        }
+    }>
+}
+
+export type dataSearchCity = {
+    custom_id: string,
+    q: string,
+    location: {
+        name:string,
+        [key:string]: unknown
+    },
+    current: {
+        temp_c: number,
+        condition: stateSkyType
+    },
+    forecast: {
+        forecastday: Array<{
+            day: {
+                mintemp_c: number,
+                maxtemp_c: number,
+                [key:string]: unknown
+            }
+            [key:string]: unknown
+        }>
+    }
 }

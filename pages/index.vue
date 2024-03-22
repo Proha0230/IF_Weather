@@ -20,18 +20,17 @@
 
 import {useValueForCity} from "~/composables/states";
 import type {cityValue} from "~/composables/types"
+import type {Ref} from "vue";
 
 const state = useValueForCity();
-const dataResponse = ref();
-const cityForecastData = ref([])
 const dotEmpty = resolveComponent('IconDotEmpty');
 const dotActive = resolveComponent('IconDotActive');
 // переменная для стартового положения пальца при свайпе
-const startX = ref(0);
+const startX:Ref<number> = ref(0);
 // переменная для стартового положения пальца при свайпе
-const endX = ref(0);
+const endX:Ref<number> = ref(0);
 // переменная которая обозначает номер текущего слайда
-const currentIndex = ref(0);
+const currentIndex:Ref<number> = ref(0);
 // Данные для слайдов
 const items: Array<cityValue> = state.value.userCityValue;
 
@@ -80,37 +79,6 @@ const handleTouchEnd = () => {
 const changeCity = (value:number) => {
   currentIndex.value = value
 }
-
-
-async function loadData() {
-  const url = `http://api.weatherapi.com/v1/forecast.json?&key=f88bd18e1ab443c8a91121443242003&lang=ru&q=bulk&days=5`
-  const {data, pending} = await useFetch(url, {
-    method: "POST",
-    body: state.value.userCityFetchValue
-  })
-  dataResponse.value = data.value.bulk
-}
-
-async function getCityValue() {
-    await loadData();
-    if(dataResponse.value) {
-      dataResponse.value.forEach((item, index) => {
-        let obj = {}
-        obj.city = item.query.location.name
-        obj.temperature = item.query.current.temp_c
-        obj.minTemperature = item.query.forecast.forecastday[0].day.mintemp_c
-        obj.maxTemperature = item.query.forecast.forecastday[0].day.maxtemp_c
-        obj.stateSky = toRaw(item.query.current.condition)
-        obj.forecast5Day = toRaw(item.query.forecast.forecastday)
-        cityForecastData.value.push(obj)
-      })
-      state.value.userCityValue = cityForecastData.value
-    }
-}
-
-getCityValue();
-
-
 
 </script>
 

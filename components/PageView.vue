@@ -8,7 +8,7 @@ import type {cityValue} from "~/composables/types"
 
 const props = defineProps({
   allValueForCity: {
-    type: Object as cityValue,
+    type: Object as unknown as cityValue,
     default: false,
   }
 })
