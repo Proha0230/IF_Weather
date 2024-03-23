@@ -20,7 +20,8 @@ export default defineNuxtPlugin((nuxtApp) => {
                 method: "POST",
                 body: state.value.userCityFetchValue
             })
-            if(typeof data.value === 'object' && data.value !== null) {
+            if(data.value && data.value) {
+                // @ts-ignore
                 dataResponse.value = toRaw(data.value)
             }
         }

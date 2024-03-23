@@ -11,22 +11,16 @@
 </template>
 
 <script setup lang="ts">
-import {useRouteSearch} from "~/composables/states";
 import type {forecast5Day} from "~/composables/types"
 
 const props = defineProps({
-  forecast3Day: {
-    type: Array as forecast5Day,
-    default: false,
+  forecast5Day: {
+    type: Array<forecast5Day>,
+    default: []
   }
 })
+const forecastValue: Array<forecast5Day> = props.forecast5Day
 
-const routeSearch = useRouteSearch();
-const forecastValue: Array<forecast5Day> = props.forecast3Day
-
-const goToForecast5Day = () => {
-  routeSearch.value.goToForecast5Day = true
-}
 
 
 </script>

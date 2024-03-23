@@ -16,25 +16,22 @@
 import type {cityValue} from "~/composables/types"
 import {useValueForCity} from "~/composables/states";
 
-const props = defineProps({
-  usersCity: {
-    type: Object as unknown as cityValue,
-    default: false
-  }
-})
-
+const props = defineProps(['usersCity'])
+const emit = defineEmits(['deleteItem'])
 const usersCity: cityValue = props.usersCity
 const subscribeTrue = resolveComponent('IconFavoriteDelete');
 const subscribeFalse = resolveComponent('IconAddFavorite');
 const state = useValueForCity();
 
 function DeleteCity() {
-  state.value.userCityFetchValue.locations = state.value.userCityFetchValue.locations.filter(item => item.q !== usersCity.city)
-  state.value.userCityValue = state.value.userCityValue.filter(item => item.city !== usersCity.city)
-  useFetch('https://if-weather-default-rtdb.firebaseio.com/City.json', {
-    method: "PATCH",
-    body: state.value.userCityFetchValue
-  })
+  emit('deleteItem', usersCity.city)
+  if(state.value.userCityFetchValue && state.value.userCityFetchValue.locations) {
+    state.value.userCityFetchValue.locations = state.value.userCityFetchValue.locations.filter(item => item.q !== usersCity.city);
+    useFetch('https://if-weather-default-rtdb.firebaseio.com/City.json', {
+      method: "PATCH",
+      body: state.value.userCityFetchValue
+    })
+  }
 }
 
 function AddCity() {
@@ -49,7 +46,7 @@ function AddCity() {
     }
   props.usersCity.subscribe = true
   state.value.userCityValue.push(props.usersCity)
-  state.value.userCitySearchValue = {}
+  state.value.userCitySearchValue = []
   useFetch('https://if-weather-default-rtdb.firebaseio.com/City.json', {
     method: "PATCH",
     body: state.value.userCityFetchValue

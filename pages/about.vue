@@ -11,7 +11,7 @@
         https://www.weatherapi.com/docs/ <br/>
       </p>
       <div class="main_about__block--button">
-        <button @click.prevent="goGitHub"> Репозиторий с приложением </button>
+        <button @click.prevent="goGitHub($event)"> Репозиторий с приложением </button>
         <button @click="goTelegram($event)"> Мой телеграм </button>
       </div>
       <div class="main_about__block--copyright">
@@ -24,11 +24,11 @@
 </template>
 
 <script setup lang="ts">
-const goGitHub = (event) => {
+const goGitHub = (event: Event) => {
   event.preventDefault()
   window.open('https://github.com/Proha0230/IF_Weather', '_blank')
 }
-const goTelegram = (event) => {
+const goTelegram = (event: Event) => {
   event.preventDefault()
   window.open('https://t.me/Proha0230', '_blank')
 }

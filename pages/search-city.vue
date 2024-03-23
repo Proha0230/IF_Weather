@@ -9,13 +9,13 @@
     </div>
     </div>
     <div class="main_search__city_search_item">
-      <div v-for="(item,index) in state.userCitySearchValue" :key="index" v-if="cityForecastData.length">
+      <div v-for="(item,index) in state.userCitySearchValue" :key="item" v-if="cityForecastData.length">
         <LazySearchCity :usersCity="item"></LazySearchCity>
       </div>
     </div>
     <div class="main_search__city_user_list">
-      <div v-for="(item,index) in state.userCityValue" :key="index">
-        <SearchCity :usersCity="item"></SearchCity>
+      <div v-for="(item,index) in usersCity" :key="item">
+        <SearchCity :usersCity="item" ref="searchCityItem" @deleteItem="deleteItem($event)"></SearchCity>
       </div>
     </div>
     </div>
@@ -34,6 +34,13 @@ const state = useValueForCity();
 const inputSearch:Ref<string> = ref('');
 const dataSearchValue: Ref<dataSearchCity | null> = ref(null);
 const cityForecastData: Ref<Array<cityValue>> = ref([]);
+
+const usersCity = ref(state.value.userCityValue);
+
+function deleteItem(item: string) {
+  state.value.userCityValue = state.value.userCityValue.filter(itemValue => itemValue.city !== item);
+  usersCity.value = usersCity.value.filter(itemValue => itemValue.city !== item)
+}
 async function loadData() {
   cityForecastData.value = []
   const url = `https://api.weatherapi.com/v1/forecast.json?&key=f88bd18e1ab443c8a91121443242003&lang=ru&q=${inputSearch.value}&days=5`

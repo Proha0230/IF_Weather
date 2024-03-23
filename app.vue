@@ -11,7 +11,6 @@
 
 <script setup lang="ts">
 import {useValueForCity} from "~/composables/states";
-import {useAsyncData} from "#app";
 
 const state = useValueForCity();
 

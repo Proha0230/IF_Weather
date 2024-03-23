@@ -1,6 +1,6 @@
 <template>
 <div class="main">
-  <div class="main__slider" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" v-if="state.userCityValue.length">
+  <div class="main__slider" @touchstart="handleTouchStart($event)" @touchmove="handleTouchMove($event)" @touchend="handleTouchEnd" v-if="state.userCityValue.length">
     <div class="main__slider--dots_slide_list">
       <div class="dots_slide_list__item" v-for="(item, index) in items" :key="index">
       <component :is="index === currentIndex ? dotActive : dotEmpty" @click="changeCity(index)"></component>
@@ -8,7 +8,7 @@
     </div>
     <div class="main__slider--slides" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
       <div class="slides__slide" v-for="(item, index) in items" :key="index">
-        <PageView :allValueForCity="item"></PageView>
+        <PageView :allValueForCity="item as cityValue"></PageView>
       </div>
     </div>
   </div>
@@ -45,14 +45,14 @@ state.value.userCityValue = state.value.userCityValue.filter(item => item.city !
 
 
 //определение положения пальца при нажатии на слайд
-const handleTouchStart = (e) => {
-  startX.value = e.touches[0].clientX;
+const handleTouchStart = (event) => {
+  startX.value = event.touches[0].clientX;
 };
 
 // определение положения пальца в какую сторону он двигается - в правую/левую сторону слайда
 // и определения точки в которой палец отпустился с экрана
-const handleTouchMove = (e) => {
-  endX.value = e.touches[0].clientX;
+const handleTouchMove = (event) => {
+  endX.value = event.touches[0].clientX;
 };
 
 // метод перелистывающий слайды

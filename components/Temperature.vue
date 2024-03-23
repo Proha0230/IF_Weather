@@ -14,13 +14,7 @@
 <script setup lang="ts">
 import type {cityValue} from "~/composables/types"
 
-const props = defineProps({
-  item: {
-    type: Object as unknown as cityValue,
-    default: false
-  }
-})
-
+const props = defineProps(['item'])
 const cityValue: cityValue = props.item
 
 </script>

@@ -16,12 +16,8 @@
 <script setup lang="ts">
 import type {forecast5Day} from "~/composables/types"
 
-const props = defineProps({
-  forecast3Day: {
-    type: Object as unknown as forecast5Day,
-    default:  false as boolean,
-  }
-})
+const props = defineProps(['forecast3Day'])
+const forecastValue: forecast5Day = props.forecast3Day
 
 function dateForecast (str:string) {
   return str.slice(5).replace('-', '.')
@@ -34,9 +30,6 @@ function truncateString(str:string, maxLength:number) {
     return str
   }
 }
-
-
-const forecastValue: forecast5Day = props.forecast3Day
 
 </script>
 
